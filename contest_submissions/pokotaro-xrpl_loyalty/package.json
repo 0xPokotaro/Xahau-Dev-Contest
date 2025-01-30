@@ -1,0 +1,22 @@
+{
+  "name": "pokotaro-xrpl_loyalty",
+  "version": "1.0.0",
+  "author": "pokotaro",
+  "license": "MIT",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev:fe": "turbo run dev --filter=frontend",
+    "format:write": "biome format --write --verbose ."
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "turbo": "^2.3.4",
+    "typescript": "^5.7.3"
+  }
+}
