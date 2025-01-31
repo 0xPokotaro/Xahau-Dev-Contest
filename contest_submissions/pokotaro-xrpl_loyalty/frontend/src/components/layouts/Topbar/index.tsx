@@ -35,6 +35,7 @@ const Topbar = () => {
           <Typography component="div" sx={{ flexGrow: 1 }}>
             {APP_NAME}
           </Typography>
+          {/*
           <Box
             sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}
           >
@@ -42,6 +43,7 @@ const Topbar = () => {
               Connect
             </Button>
           </Box>
+          */}
         </Toolbar>
       </AppBar>
       <Sidebar open={open} toggleDrawer={toggleDrawer} />
