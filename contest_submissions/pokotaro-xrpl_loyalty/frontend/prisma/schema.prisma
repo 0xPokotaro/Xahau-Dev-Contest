@@ -15,7 +15,7 @@ datasource db {
 
 model Employee {
   id    Int     @id @default(autoincrement())
-  degit String  @unique
+  digest String  @unique
   name  String
   address String @unique
   createdAt DateTime @default(now())

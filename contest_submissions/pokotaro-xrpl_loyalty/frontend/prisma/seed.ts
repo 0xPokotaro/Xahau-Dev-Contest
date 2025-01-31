@@ -1,15 +1,15 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client'
 import { Wallet } from '@transia/xrpl'
-import { generate256BitHash } from "../src/utils/hash"
+import { generate256BitHash } from '../src/utils/hash'
 import { WALLET_SEEDS } from '../src/constants/wallet'
 
 const prisma = new PrismaClient()
 
 const employees = [
   {
-    name: "Alice",
+    name: 'Alice',
     address: Wallet.fromSeed(WALLET_SEEDS.ALICE).address,
-    degit: generate256BitHash("1"),
+    digest: generate256BitHash('1')
   }
 ]
 

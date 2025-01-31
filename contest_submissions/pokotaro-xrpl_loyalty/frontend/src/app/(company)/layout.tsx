@@ -14,9 +14,11 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>
-        <Topbar />
-        {children}
+      <body>
+        <div suppressHydrationWarning>
+          <Topbar />
+          {children}
+        </div>
       </body>
     </html>
   )

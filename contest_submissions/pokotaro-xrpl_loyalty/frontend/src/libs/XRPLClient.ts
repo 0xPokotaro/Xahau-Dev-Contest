@@ -1,21 +1,33 @@
+import type {
+  AccountObjectsRequest,
+  AccountObjectsResponse
+} from '@transia/xrpl'
 import { Client, Wallet } from '@transia/xrpl'
-import { XAHAU_WSS_ENDPOINT } from '@/constants'
+import { XAHAU_WSS_ENDPOINT, WALLET_SEEDS } from '@/constants'
 
 export class XRPLClient {
-  private static instance: Client
+  private client: Client
 
-  private constructor() {}
-
-  public static getInstance(): Client {
-    if (!XRPLClient.instance) {
-      XRPLClient.instance = new Client(XAHAU_WSS_ENDPOINT)
-    }
-    return XRPLClient.instance
+  constructor() {
+    this.client = new Client(XAHAU_WSS_ENDPOINT)
   }
 
   // ==============================
   // public methods
   // ==============================
+
+  companyWallet() {
+    return Wallet.fromSeed(WALLET_SEEDS.COMPANY)
+  }
+
+  async requestAccountObjects(
+    request: AccountObjectsRequest
+  ): Promise<AccountObjectsResponse> {
+    return await this.#withConnection(async () => {
+      const response = await this.#request(request)
+      return response as AccountObjectsResponse
+    })
+  }
 
   async multiRequest(requests: any[]) {
     try {
@@ -35,7 +47,7 @@ export class XRPLClient {
       return await this.#withConnection(async () => {
         return await Promise.all(
           params.map(async ({ tx, wallet }) => {
-            tx.NetworkID = await XRPLClient.getInstance().getNetworkID()
+            tx.NetworkID = await this.client.getNetworkID()
             return await this.#submit(tx, wallet)
           })
         )
@@ -52,18 +64,18 @@ export class XRPLClient {
 
   async #withConnection(operation: () => Promise<any>) {
     try {
-      await XRPLClient.getInstance().connect()
+      await this.client.connect()
       return await operation()
     } catch (error) {
       throw error
     } finally {
-      await XRPLClient.getInstance().disconnect()
+      await this.client.disconnect()
     }
   }
 
   async #request(request: any) {
     try {
-      return await XRPLClient.getInstance().request(request)
+      return await this.client.request(request)
     } catch (error) {
       console.error('XRPLClient: #request: ', error)
       throw error
@@ -72,8 +84,8 @@ export class XRPLClient {
 
   async #submit(transaction: any, wallet: Wallet) {
     try {
-      transaction.NetworkID = await XRPLClient.getInstance().getNetworkID()
-      return await XRPLClient.getInstance().submitAndWait(transaction, {
+      transaction.NetworkID = await this.client.getNetworkID()
+      return await this.client.submitAndWait(transaction, {
         wallet,
         autofill: true
       })

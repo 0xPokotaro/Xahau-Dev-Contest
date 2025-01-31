@@ -7,7 +7,11 @@ interface PageHeaderProps {
 }
 
 const PageHeader = ({ title }: PageHeaderProps) => {
-  return <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'gray' }}>{title}</Typography>
+  return (
+    <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'gray' }}>
+      {title}
+    </Typography>
+  )
 }
 
 export default PageHeader

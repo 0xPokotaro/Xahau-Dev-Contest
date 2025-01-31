@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE "employees" (
     "id" SERIAL NOT NULL,
-    "degit" TEXT NOT NULL,
+    "digest" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -12,7 +12,7 @@ CREATE TABLE "employees" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "employees_degit_key" ON "employees"("degit");
+CREATE UNIQUE INDEX "employees_digest_key" ON "employees"("digest");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "employees_address_key" ON "employees"("address");

@@ -13,7 +13,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>{children}</body>
+      <body>
+        <div suppressHydrationWarning>{children}</div>
+      </body>
     </html>
   )
 }

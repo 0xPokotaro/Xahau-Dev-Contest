@@ -9,7 +9,7 @@ export async function GET(_request: Request) {
     employees.map((employee) => {
       return {
         id: employee.id,
-        degit: employee.degit,
+        digest: employee.digest,
         name: employee.name,
         address: employee.address
       }
