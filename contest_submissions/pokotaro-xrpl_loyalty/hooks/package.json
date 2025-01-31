@@ -1,0 +1,13 @@
+{
+  "name": "contracts",
+  "packageManager": "yarn@4.6.0",
+  "scripts": {
+    "build": "c2wasm-cli contracts build",
+    "start": "ts-node src/standalone.ts"
+  },
+  "devDependencies": {
+    "@transia/hooks-toolkit": "^2.0.0-alpha.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}

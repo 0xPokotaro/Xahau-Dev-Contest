@@ -2,79 +2,102 @@
 
 An Employee Reward Management System Powered by XRP Ledger 🎯
 
-DEMO(Youtube): https://youtu.be/5-ykhy3-hPE
-
 ## Project Overview 📖
 
-XRPL LOYALTY is an innovative system that manages employee ID cards on the blockchain using XRP Ledger's **URIToken**. 
-By converting employee ID cards into NFTs, we achieve tamper-proof verification and real-time employment status confirmation, streamlining corporate HR management.
+XRPL LOYALTY is an innovative system that manages employee IDs on the blockchain using XRP Ledger's **URIToken**.
+By tokenizing employee IDs as NFTs, we achieve tamper-proof verification and real-time employment status confirmation, streamlining corporate HR management.
 
-By setting the URIToken purchase price to 0 XRP, we enable its use as a pure employee ID card system, enhancing its practicality for corporate HR management.
-This system has the potential to pioneer blockchain adoption in the enterprise market, exemplifying XRP Ledger's business use cases.
+By setting the URIToken purchase price to 0 XRP, we enable its pure use as an employee ID, enhancing its practicality as a corporate HR management system.
+This system pioneers blockchain adoption in the enterprise market and materializes XRP Ledger's business use cases.
 
 ### Key Features
 
-- **Blockchain-Based ID Card Management** 🔐
-  - Unique employee ID card issuance using URIToken
+- **Blockchain-based Employee ID Management** 🔐
+  - Unique employee ID issuance using URIToken
   - Tamper-proof record of employment information
   - Real-time employment status verification
 
 - **High Compatibility with Hooks** 🔄
-  - Employee onboarding and offboarding processes
-  - ID card issuance and invalidation
+  - Employee onboarding and offboarding processing
+  - Employee ID issuance and invalidation
   - Permanent transaction history retention
+  - XRP staking-based retirement benefit system (planned)
 
 - **Dynamic URIToken Management** 🎨
-  - Flexible attribute information management through direct API server integration
+  - Flexible attribute information manipulation through direct API server integration
   - Infinite variations through dynamic SVG image generation
-  - Highly extensible design without Storage Server dependency
+  - Highly scalable design independent of StorageServer
 
-## Usage Guide 🚀
+### Future Development Plans 🚀
 
-The system provides two interfaces for employees and company administrators:
+- **XRP Staking System** 💰
+  - Companies can stake XRP against URITokens
+  - Staking amounts can be set based on years of service and contributions
+  - Automatic operation through smart contracts
 
-1. Employee Portal (`/employee`)
-   - View ID card and QR code
-   - Claim ID card
-   - Invalidate ID card
+- **Automatic Retirement Payment System** 💸
+  - Automatic payment of staked XRP as retirement benefits upon URIToken burn
+  - Transparent retirement benefit management
+  - Secure fund management through smart contracts
 
-2. Company Admin Portal (`/company`)
-   - Issue and invalidate ID cards
+## Usage 🚀
+
+The system provides two interfaces: one for employees and one for company administrators:
+
+1. Employee Screen (`/employee`)
+   - Display employee ID and QR code
+   - Claim employee ID
+   - Invalidate employee ID
+
+2. Company Management Screen (`/company`)
+   - Issue and invalidate employee IDs
    - Manage employee information
-   - System settings management
+   - Manage system settings
 
 ### Usage Scenarios
 
-1. ID Card Issuance and Acquisition
-   - Company: Issue ID card for new employees
-   - Employee: Claim issued ID card
-   - Employee: View ID card via QR code (Scanning the QR code provides access to the URIToken page on Xahau Explorer, enabling verification of ID card information on the blockchain)
+1. Employee ID Issuance and Acquisition
+   - Company: Issue employee ID for new hire
+   - Employee: Claim issued employee ID
+   - Employee: Query employee ID via QR code (Scanning the QR code accesses the URIToken page on Xahau Explorer to verify employee ID information on the blockchain)
 
-2. ID Card Invalidation
-   - Employee: Self-invalidate ID card upon resignation
-   - Company: Invalidate ID card as needed
+2. Employee ID Invalidation
+   - Employee: Invalidate own employee ID upon resignation
+   - Company: Invalidate employee ID as needed
 
-> Note: Current version is a Proof of Concept, configured for testing with Alice account and company account.
+> Note: The current version is a Proof of Concept, allowing operation verification with Alice account and company account.
 
-## Xahau Hooks Integration 🔗
+## Setup Instructions 🚀
 
-Our project utilizes Xahau Hooks in the following ways:
+### 1. Environment Setup
 
-### URIToken Management
+First, start the Docker container and prepare the necessary environment:
 
-- **ID Card Issuance** 🎫
-  - Embedding employee information as metadata
-  - Instant verification via QR code
-  - Dynamic attribute information configuration
+```bash
+# Start Docker container
+docker compose up -d
 
-- **ID Card Invalidation** 🔒
-  - Token burn processing
-  - Permanent history retention
+# Initialize database
+yarn db:init
+```
 
-- **ID Card Update** 🔄
-  - Metadata updates
-  - History recording
-  - SVG image regeneration
+### 2. Launch Frontend
+
+Start the frontend development server:
+
+```bash
+# Start frontend development server
+yarn dev:fe
+```
+
+### 3. Access Method
+
+After starting the frontend development server, access the following URLs:
+
+- Employee Screen: `http://localhost:3000/employee`
+- Company Management Screen: `http://localhost:3000/company`
+
+> Note: In the development environment, operation verification is possible with Alice account and company account.
 
 ## License
 

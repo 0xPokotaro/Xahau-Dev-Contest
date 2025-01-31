@@ -4,9 +4,11 @@
   "author": "pokotaro",
   "license": "MIT",
   "workspaces": [
-    "frontend"
+    "frontend",
+    "hooks"
   ],
   "scripts": {
+    "db:init": "turbo run db:init --filter=frontend",
     "db:reset": "turbo run db:reset --filter=frontend",
     "db:seed": "turbo run db:seed --filter=frontend",
     "dev:fe": "turbo run dev --filter=frontend",

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "ts-node": "dotenv -e .env.local ts-node",
+    "db:init": "dotenv -e .env.local -- prisma db push",
     "db:reset": "dotenv -e .env.local -- prisma migrate reset --force",
     "db:seed": "dotenv -e .env.local -- prisma db seed",
     "postinstall": "prisma generate"

@@ -12,6 +12,11 @@
       "persistent": true,
       "cache": false
     },
+    "db:init": {
+      "cache": false,
+      "inputs": ["prisma/schema.prisma"],
+      "outputs": ["prisma/migrations/**"]
+    },
     "db:reset": {
       "cache": false,
       "inputs": ["prisma/schema.prisma"],
