@@ -21,6 +21,11 @@
       "cache": false,
       "inputs": ["prisma/schema.prisma"],
       "outputs": ["prisma/seeds/**"]
+    },
+    "postinstall": {
+      "cache": false,
+      "inputs": ["prisma/schema.prisma"],
+      "outputs": ["prisma/seeds/**"]
     }
   }
 }
