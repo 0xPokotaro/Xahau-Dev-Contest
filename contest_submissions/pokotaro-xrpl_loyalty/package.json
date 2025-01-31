@@ -7,6 +7,8 @@
     "frontend"
   ],
   "scripts": {
+    "db:reset": "turbo run db:reset --filter=frontend",
+    "db:seed": "turbo run db:seed --filter=frontend",
     "dev:fe": "turbo run dev --filter=frontend",
     "format:write": "biome format --write --verbose ."
   },
@@ -16,6 +18,7 @@
   "packageManager": "yarn@4.6.0",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "dotenv-cli": "^8.0.0",
     "turbo": "^2.3.4",
     "typescript": "^5.7.3"
   }

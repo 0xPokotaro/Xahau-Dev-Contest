@@ -6,13 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ts-node": "dotenv -e .env.local ts-node",
+    "db:reset": "dotenv -e .env.local -- prisma migrate reset --force",
+    "db:seed": "dotenv -e .env.local -- prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.2",
     "@mui/material": "^6.4.2",
+    "@prisma/client": "^6.3.0",
     "@transia/xrpl": "^2.7.3-alpha.28",
     "next": "15.1.6",
     "notistack": "^3.0.2",
@@ -24,6 +31,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^8.0.0",
+    "prisma": "^6.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

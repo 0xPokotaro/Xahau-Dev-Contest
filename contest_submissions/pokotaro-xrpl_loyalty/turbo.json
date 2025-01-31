@@ -11,6 +11,16 @@
     "dev": {
       "persistent": true,
       "cache": false
+    },
+    "db:reset": {
+      "cache": false,
+      "inputs": ["prisma/schema.prisma"],
+      "outputs": ["prisma/migrations/**"]
+    },
+    "db:seed": {
+      "cache": false,
+      "inputs": ["prisma/schema.prisma"],
+      "outputs": ["prisma/seeds/**"]
     }
   }
 }
