@@ -2,6 +2,8 @@
 
 An Employee Reward Management System Powered by XRP Ledger 🎯
 
+DEMO(YouTube): https://youtu.be/5-ykhy3-hPE?si=3QgPUpDRjKNH66GL
+
 ## プロジェクトの概要 📖
 
 XRPL LOYALTYは、XRP Ledgerの**URIToken**を活用して、企業の社員証をブロックチェーン上で管理する革新的なシステムです。
