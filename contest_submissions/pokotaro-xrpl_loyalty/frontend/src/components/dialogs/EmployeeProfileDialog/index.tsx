@@ -82,7 +82,7 @@ const EmployeeProfileDialog = ({
         throw new Error('No URI token found')
       }
 
-      await burn(uriToken.tokenID, uriToken.owner)
+      await burn(uriToken.tokenID)
       await fetchURIToken({ account: employee.address })
 
       enqueueSnackbar('Burned successfully', { variant: 'success' })

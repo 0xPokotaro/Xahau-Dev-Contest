@@ -107,6 +107,7 @@ export const useURITokenGet = () => {
   return {
     data,
     loading,
-    fetch
+    fetch,
+    setData
   }
 }

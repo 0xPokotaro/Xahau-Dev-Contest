@@ -1,30 +1,32 @@
 import { useState } from 'react'
+import { Wallet } from '@transia/xrpl'
 import { XRPLClient } from '@/libs/XRPLClient'
 import { useBaseHook } from '@/hooks/core/useBaseHook'
 
 const xrplClient = new XRPLClient()
 
-export const useURITokenBurn = () => {
+export const useURITokenBuy = () => {
   const [loading, setLoading] = useState<boolean>(false)
 
   const { execute } = useBaseHook()
 
-  const burn = async (tokenID: string) => {
+  const buy = async (tokenID: string, wallet: Wallet) => {
     try {
       setLoading(true)
 
-      const companyWallet = xrplClient.companyWallet()
-
-      await execute(async () => {
-        await xrplClient.submitURITokenBurn(
+      const response = await execute(async () => {
+        return await xrplClient.submitURITokenBuy(
           {
-            TransactionType: 'URITokenBurn',
-            Account: companyWallet.address,
-            URITokenID: tokenID
+            TransactionType: 'URITokenBuy',
+            Account: wallet.address,
+            URITokenID: tokenID,
+            Amount: '0'
           },
-          companyWallet
+          wallet
         )
       })
+
+      console.log(response)
     } catch (error) {
       console.error(error)
       throw error
@@ -34,7 +36,7 @@ export const useURITokenBurn = () => {
   }
 
   return {
-    burn,
+    buy,
     loading
   }
 }
