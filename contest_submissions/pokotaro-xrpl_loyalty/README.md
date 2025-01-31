@@ -2,6 +2,8 @@
 
 An Employee Reward Management System Powered by XRP Ledger 🎯
 
+DEMO(Youtube): https://youtu.be/5-ykhy3-hPE
+
 ## Project Overview 📖
 
 XRPL LOYALTY is an innovative system that manages employee ID cards on the blockchain using XRP Ledger's **URIToken**. 
