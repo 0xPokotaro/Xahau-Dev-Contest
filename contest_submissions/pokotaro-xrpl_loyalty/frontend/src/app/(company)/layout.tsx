@@ -7,21 +7,17 @@ export const metadata: Metadata = {
   description: 'Company Management System'
 }
 
-const RootLayout = ({
+const CompanyLayout = ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) => {
   return (
-    <html lang="en">
-      <body>
-        <div suppressHydrationWarning>
-          <Topbar />
-          {children}
-        </div>
-      </body>
-    </html>
+    <>
+      <Topbar />
+      {children}
+    </>
   )
 }
 
-export default RootLayout
+export default CompanyLayout

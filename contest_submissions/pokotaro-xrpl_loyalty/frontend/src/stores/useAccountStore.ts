@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { Wallet } from '@transia/xrpl'
 
 export interface Account {
-  wallet: Wallet | null
+  wallet: Wallet
   isConnected: boolean
 }
 

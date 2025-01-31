@@ -6,18 +6,12 @@ export const metadata: Metadata = {
   description: 'Employee Management System'
 }
 
-const RootLayout = ({
+const EmployeeLayout = ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) => {
-  return (
-    <html lang="en">
-      <body>
-        <div suppressHydrationWarning>{children}</div>
-      </body>
-    </html>
-  )
+  return children
 }
 
-export default RootLayout
+export default EmployeeLayout

@@ -1,19 +1,31 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { useBaseHook } from '@/hooks/core/useBaseHook'
 import { XRPLClient } from '@/libs/XRPLClient'
+import { hexToString } from '@/utils/hex'
 
 interface FetchParams {
   account: string
-  digest: string
 }
 
 const xrplClient = new XRPLClient()
+
+const getURIToken = async (uri: string, tokenID: string) => {
+  const { data } = await axios.get(uri, {
+    params: {
+      tokenID
+    }
+  })
+
+  return data
+}
 
 export const useURITokenGet = () => {
   // States
   const [data, setData] = useState<{
     owner: string
     tokenID: string
+    image: string
   } | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -21,13 +33,13 @@ export const useURITokenGet = () => {
   const { execute } = useBaseHook()
 
   // Event handlers
-  const fetch = async ({ account, digest }: FetchParams) => {
+  const fetch = async ({ account }: FetchParams) => {
     try {
       setLoading(true)
 
       const companyWallet = xrplClient.companyWallet()
 
-      const [employeeResponse, companyResponse] = await execute(async () => {
+      const [employeeURIToken, companyURIToken] = await execute(async () => {
         const [employeeResponse, companyResponse] =
           await xrplClient.multiRequest([
             {
@@ -43,39 +55,46 @@ export const useURITokenGet = () => {
           ])
 
         return [
-          employeeResponse.result.account_objects.filter(
-            (object: any) => object.LedgerEntryType === 'URIToken',
-            (object: any) => object.Issuer === companyWallet.address
-          ),
-          companyResponse.result.account_objects.filter(
-            (object: any) => object.LedgerEntryType === 'URIToken',
-            (object: any) => object.Issuer === companyWallet.address
-          )
+          employeeResponse.result.account_objects
+            .filter(
+              (object: any) => object.LedgerEntryType === 'URIToken',
+              (object: any) => object.Issuer === companyWallet.address,
+              (object: any) => object.Owner === account
+            )
+            .shift(),
+          companyResponse.result.account_objects
+            .filter(
+              (object: any) => object.LedgerEntryType === 'URIToken',
+              (object: any) => object.Issuer === companyWallet.address,
+              (object: any) => object.Destination === account
+            )
+            .shift()
         ]
       })
 
-      const employeeURIToken = employeeResponse
-        .filter((object: any) => object.Digest === digest)
-        .shift()
       console.log('employeeURIToken: ', employeeURIToken)
-
-      const companyURIToken = companyResponse
-        .filter((object: any) => object.Digest === digest)
-        .shift()
       console.log('companyURIToken: ', companyURIToken)
 
       if (employeeURIToken) {
+        const uri = hexToString(employeeURIToken.URI)
+        const uritoken = await getURIToken(uri, employeeURIToken.index)
+
         setData({
           owner: employeeURIToken.Owner,
-          tokenID: employeeURIToken.index
+          tokenID: employeeURIToken.index,
+          image: uritoken.image
         })
-      }
+      } else if (companyURIToken) {
+        const uri = hexToString(companyURIToken.URI)
+        const uritoken = await getURIToken(uri, companyURIToken.index)
 
-      if (companyURIToken) {
         setData({
           owner: companyURIToken.Owner,
-          tokenID: companyURIToken.index
+          tokenID: companyURIToken.index,
+          image: uritoken.image
         })
+      } else {
+        setData(null)
       }
     } catch (error) {
       console.error(error)

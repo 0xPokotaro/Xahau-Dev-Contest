@@ -1,6 +1,8 @@
 import type {
   AccountObjectsRequest,
-  AccountObjectsResponse
+  AccountObjectsResponse,
+  URITokenBurn,
+  URITokenMint
 } from '@transia/xrpl'
 import { Client, Wallet } from '@transia/xrpl'
 import { XAHAU_WSS_ENDPOINT, WALLET_SEEDS } from '@/constants'
@@ -20,12 +22,28 @@ export class XRPLClient {
     return Wallet.fromSeed(WALLET_SEEDS.COMPANY)
   }
 
+  employeeWallet() {
+    return Wallet.fromSeed(WALLET_SEEDS.ALICE)
+  }
+
   async requestAccountObjects(
     request: AccountObjectsRequest
   ): Promise<AccountObjectsResponse> {
     return await this.#withConnection(async () => {
       const response = await this.#request(request)
       return response as AccountObjectsResponse
+    })
+  }
+
+  async submitURITokenMint(tx: URITokenMint, executeWallet: Wallet) {
+    return await this.#withConnection(async () => {
+      return await this.#submit(tx, executeWallet)
+    })
+  }
+
+  async submitURITokenBurn(tx: URITokenBurn, executeWallet: Wallet) {
+    return await this.#withConnection(async () => {
+      return await this.#submit(tx, executeWallet)
     })
   }
 
