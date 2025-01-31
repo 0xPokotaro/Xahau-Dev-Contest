@@ -1,3 +1,4 @@
+import type { Employee } from '@prisma/client'
 import { NextResponse } from 'next/server'
 import { prisma } from '@/libs/PrismaClient'
 
@@ -6,7 +7,7 @@ export async function GET(_request: Request) {
   console.log('employees: ', employees)
 
   return NextResponse.json(
-    employees.map((employee) => {
+    employees.map((employee: Employee) => {
       return {
         id: employee.id,
         digest: employee.digest,
