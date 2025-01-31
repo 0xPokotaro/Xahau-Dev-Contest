@@ -79,9 +79,15 @@ const EmployeeProfileDialog = ({
           <Typography>URIToken</Typography>
         </Grid>
         <Grid size={8}>
-          {uriToken == null && <Chip label="Not minted" size="small" color="error" />}
-          {uriToken != null && uriToken.owner === employee.address && <Chip label="Not claimed" size="small" color="warning" />}
-          {uriToken != null && uriToken.owner !== employee.address && <Chip label="Claimed" size="small" color="success" />}
+          {uriToken == null && (
+            <Chip label="Not minted" size="small" color="error" />
+          )}
+          {uriToken != null && uriToken.owner === employee.address && (
+            <Chip label="Not claimed" size="small" color="warning" />
+          )}
+          {uriToken != null && uriToken.owner !== employee.address && (
+            <Chip label="Claimed" size="small" color="success" />
+          )}
         </Grid>
         <Grid size={12}>
           <Divider sx={{ my: 1 }} />
