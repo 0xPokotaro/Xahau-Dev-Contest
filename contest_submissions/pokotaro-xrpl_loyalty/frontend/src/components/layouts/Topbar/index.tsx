@@ -20,27 +20,29 @@ const Topbar = () => {
 
   return (
     <>
-    <AppBar>
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-          onClick={() => toggleDrawer(true)}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-          {APP_NAME}
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          <Button variant="outlined" color="inherit">
-            Connect
-          </Button>
-        </Box>
-      </Toolbar>
+      <AppBar>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={() => toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography component="div" sx={{ flexGrow: 1 }}>
+            {APP_NAME}
+          </Typography>
+          <Box
+            sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}
+          >
+            <Button variant="outlined" color="inherit">
+              Connect
+            </Button>
+          </Box>
+        </Toolbar>
       </AppBar>
       <Sidebar open={open} toggleDrawer={toggleDrawer} />
     </>
